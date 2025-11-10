@@ -10,11 +10,14 @@ export default class Login {
     this.onNavigate = onNavigate
     this.PREVIOUS_LOCATION = PREVIOUS_LOCATION
     this.store = store
+    console.log("hey---------------");
+    
     const formEmployee = this.document.querySelector(`form[data-testid="form-employee"]`)
     formEmployee.addEventListener("submit", this.handleSubmitEmployee)
     const formAdmin = this.document.querySelector(`form[data-testid="form-admin"]`)
     formAdmin.addEventListener("submit", this.handleSubmitAdmin)
   }
+  
   handleSubmitEmployee = e => {
     e.preventDefault()
     const user = {
@@ -45,6 +48,9 @@ export default class Login {
       password: e.target.querySelector(`input[data-testid="admin-password-input"]`).value,
       status: "connected"
     }
+    console.log(user.email);
+    console.log(user.password);
+    
     this.localStorage.setItem("user", JSON.stringify(user))
     this.login(user)
       .catch(
